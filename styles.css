@@ -1,69 +1,71 @@
+/* Общие стили */
 body {
-   font-family: Arial, sans-serif;
-   margin: 0;
-   padding: 0;
-   background-color: #f4f4f4;
-}
-
-header {
-    background-color: #333;
-    color: white;
-    padding: 15px 0;
-    text-align: center;
-}
-
-nav ul {
-    list-style: none;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
     padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
-nav ul li {
-    display: inline;
-    margin: 0 15px;
-}
-
-nav ul li a {
-    color: white;
-    text-decoration: none;
-}
-
-.login-form {
-    max-width: 300px;
-    margin: 50px auto;
-    padding: 20px;
+/* Контейнер формы */
+.container {
     background: white;
+    padding: 20px;
     border-radius: 8px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 320px;
     text-align: center;
 }
 
-.login-form h2 {
-    margin-bottom: 20px;
-}
-
-.login-form label {
-    display: block;
-    margin: 10px 0 5px;
-}
-
-.login-form input {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 15px;
+/* Поля формы */
+input[type="text"], input[type="password"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin: 10px 0;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 4px;
 }
 
-.login-form button {
-    background-color: #28a745;
+/* Кнопка входа */
+input[type="submit"] {
+    background: #007bff;
     color: white;
     border: none;
     padding: 10px;
     width: 100%;
-    border-radius: 5px;
     cursor: pointer;
+    border-radius: 4px;
 }
 
-.login-form button:hover {
-    background-color: #218838;
+input[type="submit"]:hover {
+    background: #0056b3;
+}
+
+/* Сообщения */
+.message {
+    color: red;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* Блок авторизованного пользователя */
+.auth-block {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.auth-block a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.auth-block a:hover {
+    text-decoration: underline;
 }
