@@ -1,38 +1,37 @@
 <?php
 session_start(["use_strict_mode" => true]);
+include("dbconnect.php");
 ?>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Авторизация</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Главная страница</title>
+    <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
 
-<div class="container">
-    <?php if (isset($_SESSION['username'])): ?>
-        <div class="auth-block">
-            <p>Вы вошли под именем <strong><?= htmlspecialchars($_SESSION['username']) ?></strong></p>
-            <p><a href="auth.php?logout=1">Выйти</a></p>
-        </div>
-    <?php else: ?>
-        <form method="post" action="auth.php">
-            <h2>Вход</h2>
-            <label for="id1">Логин:</label><br>
-            <input name="login" id="id1" type="text" size="20" maxlength="40"><br>
-            <label for="id2">Пароль:</label><br>
-            <input name="password" id="id2" type="password" size="20" maxlength="40"><br>
-            <input type="submit" value="Войти">
-        </form>
-    <?php endif; ?>
+<?php include("authform.php"); ?>
 
-    <?php if (!empty($_SESSION['message'])): ?>
-        <p class="message"><?= htmlspecialchars($_SESSION['message']) ?></p>
-        <?php unset($_SESSION['message']); ?>
-    <?php endif; ?>
-</div>
+<?php
+if (isset($_SESSION['username'])) {
+    include("header.php");
+    echo "<div class='container'>";
+
+    $page = $_GET['page'] ?? '';
+
+    switch ($page) {
+        case 'tasks':
+            include "tasks.php";
+            break;
+        default:
+            echo "<p>Выберите раздел</p>";
+    }
+
+    echo "</div>";
+}
+?>
 
 </body>
 </html>
