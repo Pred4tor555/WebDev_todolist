@@ -16,44 +16,53 @@ include("dbconnect.php");
 
 <?php include("authform.php"); ?>
 
-<?php
-if (isset($_SESSION['username'])) {
-    include("header.php");
-    echo "<div class='container'>";
+<?php if (isset($_SESSION['username'])): ?>
+    <header class="header">
+        <nav>
+            <ul class="nav-menu">
+                <li><a href="index.php?page=tasks">Задачи</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    // Получение списка категорий из БД
-    $categories = $conn->query("SELECT id, name FROM categories")->fetchAll(PDO::FETCH_ASSOC);
+    <div class="container">
+        <!-- Получение списка категорий из БД -->
+        <?php
+        $categories = $conn->query("SELECT id, name FROM categories")->fetchAll(PDO::FETCH_ASSOC);
+        ?>
 
-    // Форма добавления задачи
-    echo "<h2>Добавить задачу</h2>";
-    echo "<form action='addtask.php' method='post'>";
-    echo "    <label for='task'>Название задачи:</label>";
-    echo "    <input type='text' id='task' name='title' required>";
+        <!-- Форма добавления задачи -->
+        <h2>Добавить задачу</h2>
+        <form class="task_form" action="addtask.php" method="post">
+            <label for="task">Название задачи:</label>
+            <input type="text" id="task" name="title" required>
 
-    // Выпадающий список категорий
-    echo "    <label for='category'>Категория:</label>";
-    echo "    <select id='category' name='category_id' required>";
-    foreach ($categories as $category) {
-        echo "<option value='" . htmlspecialchars($category['id']) . "'>" . htmlspecialchars($category['name']) . "</option>";
-    }
-    echo "    </select>";
+            <!-- Выпадающий список категорий -->
+            <label for="category">Категория:</label>
+            <select id="category" name="category_id" required>
+                <?php foreach ($categories as $category): ?>
+                    <option value="<?= htmlspecialchars($category['id']) ?>">
+                        <?= htmlspecialchars($category['name']) ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
 
-    echo "    <button type='submit'>Добавить</button>";
-    echo "</form>";
+            <button type="submit">Добавить</button>
+        </form>
 
-    $page = $_GET['page'] ?? '';
+        <?php
+        $page = $_GET['page'] ?? 'tasks';
 
-    switch ($page) {
-        case 'tasks':
-            include "tasks.php";
-            break;
-        default:
-            echo "<p>Выберите раздел</p>";
-    }
-
-    echo "</div>";
-}
-?>
+        switch ($page) {
+            case 'tasks':
+                include "tasks.php";
+                break;
+            default:
+                echo "<p>Выберите раздел</p>";
+        }
+        ?>
+    </div>
+<?php endif; ?>
 
 </body>
 </html>

@@ -1,110 +1,90 @@
 /* Общие стили */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     min-height: 100vh;
 }
 
-/* Навигация */
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 10px;
-    background-color: #333;
-    display: flex;
-    width: 100%;
-    justify-content: center;
-}
-
-ul li {
-    margin: 0 10px;
-}
-
-ul li a {
-    color: white;
-    text-decoration: none;
-    padding: 10px 15px;
-    display: block;
-    border-radius: 5px;
-}
-
-ul li a:hover {
-    background-color: #575757;
-}
-
-/* Контейнер для контента */
+/* Контейнер */
 .container {
+    max-width: 1100px;
+    width: 100%;
+    padding: 20px;
+}
+
+/* Хедер */
+.header {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+/* Навигация */
+.header ul {
+    list-style: none;
+    display: flex;
+}
+
+.header ul li {
+    margin-right: 15px;
+}
+
+.header ul li a {
+    text-decoration: none;
+    color: #61419f;
+    font-weight: bold;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background 0.3s ease-in-out;
+    display: inline-block;
+}
+
+.header ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Основной блок */
+.main {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+/* Боковое меню */
+.submenu {
+    background: #a3bcea;
+    width: 30%;
+    padding: 15px;
+}
+
+.submenu ul {
+    list-style: none;
+}
+
+.submenu ul li {
+    padding: 10px;
+}
+
+/* Контент */
+.content {
+    width: 65%;
     background: white;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    width: 620px;
-    text-align: center;
-    margin-top: 20px;
-    margin-bottom: 50px;
-}
-
-/* Поля формы */
-input[type="text"], input[type="password"] {
-    width: calc(100% - 20px);
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-/* Кнопка входа */
-input[type="submit"] {
-    background: #007bff;
-    color: white;
-    border: none;
-    padding: 10px;
-    width: 100%;
-    cursor: pointer;
-    border-radius: 4px;
-}
-
-input[type="submit"]:hover {
-    background: #0056b3;
-}
-
-/* Сообщения */
-.message {
-    color: red;
-    font-weight: bold;
-    margin-top: 10px;
-}
-
-/* Блок авторизованного пользователя */
-.auth-block {
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    text-align: center;
-}
-
-.auth-block a {
-    color: #007bff;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.auth-block a:hover {
-    text-decoration: underline;
 }
 
 /* Таблица задач */
-.table-container {
-    width: 80%;
-    margin: 20px auto;
-    padding: 20px;
-}
-
 table {
     width: 100%;
     border-collapse: collapse;
@@ -112,7 +92,7 @@ table {
 }
 
 table, th, td {
-    border: 1px solid #ddd;
+    border: 1px solid #ccc;
 }
 
 th, td {
@@ -121,14 +101,158 @@ th, td {
 }
 
 th {
-    background-color: #333;
+    background: cornflowerblue;
     color: white;
 }
 
-tr:nth-child(even) {
-    background-color: #f2f2f2;
+/* Форма добавления задач */
+.task_form {
+    display: flex;
+    flex-direction: column;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
 }
 
-tr:hover {
-    background-color: #ddd;
+form input, form select {
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
 }
+
+form button {
+    background: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+form button:hover {
+    background: #0056b3;
+}
+
+/* Кнопка удаления задачи */
+.delete-btn {
+    background: #ff4d4d;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 5px 10px;
+    font-size: 14px;
+    border-radius: 5px;
+    transition: background 0.3s ease-in-out;
+}
+
+.delete-btn:hover {
+    background: #cc0000;
+}
+
+/* Блок авторизованного пользователя */
+.auth-block {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* Ссылка "Выйти" */
+.auth-block a {
+    color: #ff4d4d;
+    text-decoration: none;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.auth-block a:hover {
+    text-decoration: underline;
+    color: #cc0000;
+}
+
+/* Медиа-запросы для устройств с шириной экрана до 800px */
+@media (max-width: 800px) {
+    /* Изменяем основные элементы на более компактные */
+    .header {
+        display: block;
+        text-align: center;
+    }
+
+    .header ul {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-left: 0;
+    }
+
+    .header ul li {
+        margin-bottom: 10px;
+    }
+
+    .main {
+        flex-direction: column;
+    }
+
+    .submenu {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .content {
+        width: 100%;
+    }
+
+    .task_form {
+        max-width: 100%;
+    }
+
+    .auth-block {
+        width: 100%;
+        padding: 10px;
+    }
+}
+
+/* Медиа-запросы для устройств с шириной экрана до 400px */
+@media (max-width: 400px) {
+    .header {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .header ul {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .submenu {
+        width: 100%;
+    }
+
+    .content {
+        width: 100%;
+    }
+
+    .auth-block {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .delete-btn {
+        font-size: 12px;
+        padding: 3px 8px;
+    }
+
+    .task_form {
+        max-width: 100%;
+    }
+}
+
