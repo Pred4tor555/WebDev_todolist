@@ -89,6 +89,7 @@ table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 10px;
+    table-layout: fixed; /* Фиксированная ширина столбцов */
 }
 
 table, th, td {
@@ -98,11 +99,27 @@ table, th, td {
 th, td {
     padding: 10px;
     text-align: left;
+    word-wrap: break-word; /* Перенос слов */
+    overflow-wrap: break-word; /* Перенос слов */
 }
 
 th {
     background: cornflowerblue;
     color: white;
+}
+
+/* Фиксированная ширина столбцов */
+th:nth-child(1), td:nth-child(1) {
+    width: 40%; /* Название задачи */
+}
+
+th:nth-child(2), td:nth-child(2) {
+    width: 30%; /* Категория */
+}
+
+th:nth-child(3), td:nth-child(3) {
+    width: 30%; /* Действия */
+    text-align: center;
 }
 
 /* Форма добавления задач */
